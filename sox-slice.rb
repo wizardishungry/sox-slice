@@ -51,7 +51,7 @@ class Slicer
         Kernel.system(*args)
     end
     def filename(num)
-        file="#{@file.sub(/\.[^.]+/,'')}-#{num}-#{@freqs[num]}hz#{$~}"
+        file="#{@file.sub(/\.[^.]+/,'')}-#{"%02d" % (num+1)}-#{@freqs[num]}hz#{$~}"
     end
 end
 
