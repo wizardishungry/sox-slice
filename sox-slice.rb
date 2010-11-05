@@ -34,7 +34,7 @@ class Slicer
 
     def do_slice(num)
         puts "Slice #{num+1} of #{@slices}, #{@freqs[num]} hz"
-        args = ['sox','--buffer','131072','--multi-threaded','-S','--guard',@file,filename(num),'norm','sinc']
+        args = ['nice','-n','-15','sox','--buffer','131072','--multi-threaded','-S','--guard',@file,filename(num),'norm','sinc']
 
         if num==0
             args.push("-#{@freqs[0]}") # lowpass
