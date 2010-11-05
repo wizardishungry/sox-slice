@@ -1,0 +1,8 @@
+Ruby script that slices an audio file into N-frequency bands using SoX (http://sox.sourceforge.net/)
+
+- not sure if the high/low algorithm I selected is sound audio engineering
+    - I'm using "sinc" [sinc kaiser-windowed low-pass, high-pass, band-pass]
+    - The frequency progressing is 32,64,128,256,512,1024,2048,etc.
+    - For slice N, the window is between N-1 and N+1. So it isn't really centered on N.
+    - see http://sox.sourceforge.net/sox.html for a description of the sinc algorithm
+- Normalization wasn't doing what I had hoped (last I checked)
