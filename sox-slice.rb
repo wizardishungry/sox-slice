@@ -34,6 +34,23 @@ class Slicer
 
     def do_slice(num)
         puts "Slice #{num+1} of #{@slices}, #{@freqs[num]} hz"
+        args = ['sox','--buffer''131072','--multi-threaded','-S','--guard',@file,filename(num),'norm','sinc']
+
+        if num==0
+            args.push("-#{@freqs[0]}") # lowpass
+        elsif num==@freqs.length-1
+            args.push("#{@freqs[num]}") # highpass
+        else # general case
+            args.push("#{@freqs[num-1]}-#{@freqs[num+1]}") #bandpass
+        end
+
+        args.push('norm')
+        print "args are "
+        args.each{|x|print x," "}
+        puts ""
+    end
+    def filename(num)
+        file="#{@file.sub(/\.[^.]+/,'')}-#{num}-#{@freqs[num]}hz#{$~}"
     end
 end
 
